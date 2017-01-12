@@ -21,8 +21,12 @@ namespace Todoapp.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
+            builder.Entity<Project>()
+            .HasKey(c => new {c.ProjectId, c.UserId});
         }
 
         public DbSet<Models.TaskItem> Tasks { get; set; }
+        public DbSet<Project> Projects { get; set; }
     }
 }
