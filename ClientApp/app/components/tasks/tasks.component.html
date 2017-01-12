@@ -1,0 +1,9 @@
+<h3> All </h3>
+
+<input [(ngModel)]="newTask" (keyup.enter)="addTask($event)" type="text" class="form-control" placeholder="New Task" />
+
+<ul class="list-group">
+  <li *ngFor="let task of tasks" class="list-group-item borderless">
+    <task-list-item [task]="task" (completeEvent)="completeTask($event)" (removeEvent)="removeTask($event)"></task-list-item>
+  </li>
+</ul>

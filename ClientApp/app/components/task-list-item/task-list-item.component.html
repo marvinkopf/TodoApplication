@@ -1,0 +1,13 @@
+<div class="checkbox">
+  <input *ngIf="!task.isDeleted" type="checkbox" 
+    [(ngModel)]="task.isCompleted" ng-checked="task.isCompleted" (click)=completeTask() />
+  <input *ngIf="task.isDeleted" type="checkbox"
+    [(ngModel)]="task.isCompleted" ng-checked="task.isCompleted" (click)=completeTask() disabled/>
+  <label>
+        {{ task.title }}
+  </label>
+  <button *ngIf="!task.isDeleted" (click)="removeTask()" 
+    class="glyphicon glyphicon-remove task-list-item-button btn btn-default"></button>
+  <button type="date" *ngIf="!task.isDeleted"
+    class="glyphicon glyphicon-calendar task-list-item-button btn btn-default"></button>
+</div>
