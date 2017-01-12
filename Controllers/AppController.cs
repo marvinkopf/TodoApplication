@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Todoapp.Controllers
 {
-    [Route("app")]
+    [Authorize]
     public class AppController : Controller
     {
         [HttpGet]

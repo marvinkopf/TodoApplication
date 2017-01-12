@@ -63,7 +63,7 @@ namespace Todoapp.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    return RedirectToLocal("/app/all/tasks");
+                    return RedirectToLocal("/app");
                 }
                 if (result.RequiresTwoFactor)
                 {
