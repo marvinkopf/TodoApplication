@@ -171,6 +171,19 @@ namespace Todoapp.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Todoapp.Models.Project", b =>
+                {
+                    b.Property<int>("ProjectId");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("ProjectId", "UserId");
+
+                    b.ToTable("Projects");
+                });
+
             modelBuilder.Entity("Todoapp.Models.TaskItem", b =>
                 {
                     b.Property<int>("TaskItemId")

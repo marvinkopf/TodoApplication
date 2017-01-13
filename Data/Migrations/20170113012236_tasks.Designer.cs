@@ -8,8 +8,8 @@ using Todoapp.Data;
 namespace Todoapp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170112003916_task")]
-    partial class task
+    [Migration("20170113012236_tasks")]
+    partial class tasks
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -170,6 +170,19 @@ namespace Todoapp.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Todoapp.Models.Project", b =>
+                {
+                    b.Property<int>("ProjectId");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("ProjectId", "UserId");
+
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("Todoapp.Models.TaskItem", b =>
