@@ -20,6 +20,7 @@ import { FormsModule }   from '@angular/forms';
         FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'tasks', pathMatch: 'full' },
+            { path: 'tasks', component: TasksComponent},
             { path: '**', redirectTo: 'tasks' }
         ])
     ]
