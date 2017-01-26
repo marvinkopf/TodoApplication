@@ -1,5 +1,3 @@
-
-
 <div class='container-fluid'>
     <div class='row'>
         <div class='col-sm-6 left'>
@@ -16,7 +14,8 @@
             </ul>
         </div>
         <div class='col-sm-6 right'>
-            {{ activeTask.title }}
+            <task-content [task]="activeTask">
+            </task-content>
         </div>
     </div>
 </div>

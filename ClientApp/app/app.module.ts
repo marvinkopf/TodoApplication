@@ -5,6 +5,7 @@ import { AppComponent } from './components/app/app.component'
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskListItemComponent } from './components/task-list-item/task-list-item.component';
+import { TaskContentComponent } from './components/task-content/task-content.component';
 import { FormsModule }   from '@angular/forms';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormsModule }   from '@angular/forms';
         AppComponent,
         NavMenuComponent,
         TasksComponent,
-        TaskListItemComponent
+        TaskListItemComponent,
+        TaskContentComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
