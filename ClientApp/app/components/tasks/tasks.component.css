@@ -8,6 +8,10 @@ input.form-control {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
 }
 
+li.selected, li:hover {
+    background-color: #A80000;
+}
+
 li.borderless {
     border-left: none;
     border-right: none;
@@ -31,4 +35,9 @@ h3 {
     padding-left: 0;
     padding-right: 0;
     border-right: solid 1px #ddd;
+    min-height: 100vh;
+}
+
+.right {
+    min-height: 100vh;
 }
