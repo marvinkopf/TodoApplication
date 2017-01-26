@@ -7,6 +7,7 @@ import { Task } from "./../../core/domain/task";
   styleUrls: ["./task-list-item.component.css"],
   templateUrl: "./task-list-item.component.html"
 })
+
 export class TaskListItemComponent {
   @Input()
   task: Task;
@@ -16,6 +17,9 @@ export class TaskListItemComponent {
 
   @Output()
   completeEvent = new EventEmitter();
+
+  @Output()
+  selectEvent = new EventEmitter();
 
   select() {
     this.selectEvent.next(this.task);

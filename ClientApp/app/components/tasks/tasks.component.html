@@ -1,11 +1,22 @@
-<h3> All </h3>
 
-<input [(ngModel)]="newTask" (keyup.enter)="addTask($event)" type="text" class="form-control" placeholder="New Task" />
 
-<ul class="list-group">
-  <li *ngFor="let task of tasks" class="list-group-item borderless">
-    <task-list-item [task]="task" (completeEvent)="completeTask($event)"
-      (removeEvent)="removeTask($event)">
-    </task-list-item>
-  </li>
-</ul>
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-sm-6 left'>
+            <h3> All </h3>
+
+            <input [(ngModel)]="newTask" (keyup.enter)="addTask($event)" type="text" class="form-control" placeholder="New Task" />
+
+            <ul class="list-group">
+              <li *ngFor="let task of tasks" class="list-group-item borderless">
+                <task-list-item [task]="task" (completeEvent)="completeTask($event)"
+                  (removeEvent)="removeTask($event)" (selectEvent)="select($event)">
+                </task-list-item>
+              </li>
+            </ul>
+        </div>
+        <div class='col-sm-6 right'>
+            {{ activeTask.title }}
+        </div>
+    </div>
+</div>

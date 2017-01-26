@@ -26,3 +26,7 @@ ul {
 h3 {
     margin-left: 30px;
 }
+
+.left {
+    border-right: solid 1px #ddd;
+}

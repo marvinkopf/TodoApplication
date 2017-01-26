@@ -14,6 +14,7 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
 export class TasksComponent implements ng.OnInit {
   public newTask = "";
   public tasks: Task[] = new Array<Task>();
+  public activeTask: Task = new Task();
   errorMessage: string;
 
   constructor(private taskService: TaskService, private http: Http) { }
@@ -27,6 +28,10 @@ export class TasksComponent implements ng.OnInit {
       .subscribe(
       tasks => this.tasks = tasks,
       error => this.errorMessage = <any>error);
+  }
+
+  select(task: Task) {
+    this.activeTask = task;
   }
 
   addTask(event): void {
