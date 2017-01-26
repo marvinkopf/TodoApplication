@@ -1,4 +1,4 @@
-<div class="checkbox">
+<div class="checkbox" >
   <input *ngIf="!task.isDeleted" type="checkbox" 
     [(ngModel)]="task.isCompleted" ng-checked="task.isCompleted" (click)=completeTask() />
   <input *ngIf="task.isDeleted" type="checkbox"
