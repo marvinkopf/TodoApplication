@@ -4,3 +4,17 @@
         padding-top: 50px;
     }
 }
+
+.body-content {
+    padding-left: 0;
+    padding-right: 0;
+    border-right: solid 1px #ddd;
+}
+
+body,
+.container-fluid,
+.row,
+.body-content,
+.ul {
+    min-height: 100vh;
+}

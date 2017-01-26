@@ -4,6 +4,8 @@
 
 <ul class="list-group">
   <li *ngFor="let task of tasks" class="list-group-item borderless">
-    <task-list-item [task]="task" (completeEvent)="completeTask($event)" (removeEvent)="removeTask($event)"></task-list-item>
+    <task-list-item [task]="task" (completeEvent)="completeTask($event)"
+      (removeEvent)="removeTask($event)">
+    </task-list-item>
   </li>
 </ul>

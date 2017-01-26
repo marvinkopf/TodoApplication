@@ -4,6 +4,7 @@ import { Task } from "./../../core/domain/task";
 
 @ng.Component({
   selector: "task-list-item",
+  styleUrls: ["./task-list-item.component.css"],
   templateUrl: "./task-list-item.component.html"
 })
 export class TaskListItemComponent {
@@ -16,6 +17,9 @@ export class TaskListItemComponent {
   @Output()
   completeEvent = new EventEmitter();
 
+  select() {
+    this.selectEvent.next(this.task);
+  }
 
   removeTask() {
     this.removeEvent.next(this.task);

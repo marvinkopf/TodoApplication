@@ -6,8 +6,8 @@
   <label>
         {{ task.title }}
   </label>
-  <button *ngIf="!task.isDeleted" (click)="removeTask()" 
-    class="glyphicon glyphicon-remove task-list-item-button btn btn-default"></button>
   <button type="date" *ngIf="!task.isDeleted"
-    class="glyphicon glyphicon-calendar task-list-item-button btn btn-default"></button>
+    class="glyphicon glyphicon-calendar btn btn-default"></button>
+  <button *ngIf="!task.isDeleted" (click)="removeTask()" 
+    class="glyphicon glyphicon-remove btn btn-default"></button>
 </div>

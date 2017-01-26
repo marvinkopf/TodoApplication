@@ -7,6 +7,7 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
 @ng.Component({
   selector: "tasks",
   templateUrl: "./tasks.component.html",
+  styleUrls: ["./tasks.component.css"],
   entryComponents: [TaskListItemComponent],
   providers: [TaskService]
 })
