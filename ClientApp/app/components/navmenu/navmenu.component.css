@@ -57,3 +57,18 @@ li.link-active a:focus {
         text-overflow: ellipsis;
     }
 }
+
+.menu {
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+}
+
+.btn {
+    padding: 0 !important; 
+    background-color: transparent !important;
+    border: none !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white !important;
+}
