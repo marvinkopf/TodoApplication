@@ -2,6 +2,8 @@ h3 {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 :host {
@@ -9,10 +11,14 @@ h3 {
     height: 100vh;
 }
 
-textarea {
+textarea,
+textarea:focus {
     height: 90%;
     width: 100%;
     overflow: hidden;
     resize: none;
-    margin-top: 10px;
+    border: none;
+    font-size: 18px;
+    outline: none;
+    outline-offset: 0;
 }
