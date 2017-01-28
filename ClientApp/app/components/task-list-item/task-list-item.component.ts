@@ -19,10 +19,29 @@ export class TaskListItemComponent {
   completeEvent = new EventEmitter();
 
   @Output()
-  selectEvent = new EventEmitter();
+  taskTitleChangedEvent = new EventEmitter();
 
-  select() {
-    this.selectEvent.next(this.task);
+  cachedTaskTitle: string;
+
+  startEditTaskTitle() {
+    this.cachedTaskTitle = this.task.title;
+  }
+
+  taskTitleUpdatedEnter(taskDom) {
+    taskDom.blur();
+    this.taskTitleUpdated();
+  }
+
+  taskTitleUpdated() {
+    if (this.task.title === "") {
+      this.task.title = this.cachedTaskTitle;
+      return;
+    }
+
+    if (this.task.title === this.cachedTaskTitle) 
+      return;
+
+    this.taskTitleChangedEvent.next(this.task);
   }
 
   removeTask() {

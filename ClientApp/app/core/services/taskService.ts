@@ -64,6 +64,17 @@ export class TaskService {
              .catch(this.handleError);
     }
 
+    public putTask(task: Task) {
+        let body = JSON.stringify(task);
+        let headers = new Headers({
+            "Content-Type": "application/json; charset=utf-8",
+            "Accept": "application/json" });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.put("api/task/" + task.taskItemId, body, options)
+             .map(res => res.json())
+             .catch(this.handleError);
+    }
+
     private handleError (error: any) {
         let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : "Server error";

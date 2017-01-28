@@ -3,9 +3,10 @@
     [(ngModel)]="task.isCompleted" ng-checked="task.isCompleted" (click)=completeTask() />
   <input *ngIf="task.isDeleted" type="checkbox"
     [(ngModel)]="task.isCompleted" ng-checked="task.isCompleted" (click)=completeTask() disabled/>
-  <label (click)="select()"> 
-        {{ task.title }}
-  </label>
+  <input #taskDom type="text" [(ngModel)]="task.title" class="task-title-input"
+      (focus)="startEditTaskTitle()"
+      (keyup.enter)="taskTitleUpdatedEnter(taskDom)"
+      (blur)="taskTitleUpdated()"/>
   <button *ngIf="!task.isDeleted" (click)="removeTask()" 
     class="glyphicon glyphicon-remove btn btn-default"></button>
   <button type="date" *ngIf="!task.isDeleted"

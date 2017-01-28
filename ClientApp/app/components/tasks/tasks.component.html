@@ -10,7 +10,8 @@
                 [class.selected]="activeTask?.title === task.title"
                 (click)="select(task)">
                 <task-list-item [task]="task" (completeEvent)="completeTask($event)"
-                  (removeEvent)="removeTask($event)">
+                  (removeEvent)="removeTask($event)"
+                  (taskTitleChangedEvent)="putTask($event)">
                 </task-list-item>
               </li>
             </ul>

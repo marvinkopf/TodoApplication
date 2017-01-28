@@ -76,4 +76,15 @@ export class TasksComponent implements ng.OnInit {
           error => this.errorMessage = <any>error),
       error => this.errorMessage = <any>error);
   }
+
+  putTask(task: Task): void {
+    this.taskService.putTask(task)
+      .subscribe(
+      task =>
+        this.taskService.getAllTasks()
+          .subscribe(
+          tasks => this.tasks = tasks,
+          error => this.errorMessage = <any>error),
+      error => this.errorMessage = <any>error);
+  }
 }

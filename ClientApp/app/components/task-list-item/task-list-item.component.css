@@ -10,9 +10,11 @@ button {
     background-color: transparent;
 }
 
-label {
+.task-title-input {
     padding-left: 5px;
     width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;
+    background-color: transparent;
+    border: none;
 }
