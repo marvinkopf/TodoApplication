@@ -9,7 +9,7 @@ input.form-control {
 }
 
 li.selected, li:hover {
-    background-color: #A80000;
+    background-color: #d3d3d3;
 }
 
 li.borderless {
