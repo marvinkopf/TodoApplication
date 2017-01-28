@@ -21,5 +21,7 @@ namespace Todoapp.Models
         public DateTimeOffset CompletedTime { get; set; }
 
         public DateTimeOffset DeletedTime { get; set; }
+
+        public string Text { get; set; }
     }
 }

@@ -4,4 +4,5 @@ export class Task {
     isDeleted: boolean;
     projectId: string;
     title: string;
+    text: string;
 }

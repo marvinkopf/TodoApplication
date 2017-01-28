@@ -17,7 +17,8 @@
             </ul>
         </div>
         <div class='col-sm-6 right'>
-            <task-content [task]="activeTask">
+            <task-content *ngIf="activeTask != null"
+                [task]="activeTask" (taskChanged)="putTask($event)">
             </task-content>
         </div>
     </div>

@@ -22,23 +22,22 @@ export class TaskListItemComponent {
   taskTitleChangedEvent = new EventEmitter();
 
   cachedTaskTitle: string;
+  editable = false;
 
-  startEditTaskTitle() {
+  startEditTaskTitle(taskDom) {
     this.cachedTaskTitle = this.task.title;
-  }
-
-  taskTitleUpdatedEnter(taskDom) {
-    taskDom.blur();
-    this.taskTitleUpdated();
+    this.editable = true;
+    taskDom.select();
   }
 
   taskTitleUpdated() {
+    this.editable = false;
     if (this.task.title === "") {
       this.task.title = this.cachedTaskTitle;
       return;
     }
 
-    if (this.task.title === this.cachedTaskTitle) 
+    if (this.task.title === this.cachedTaskTitle)
       return;
 
     this.taskTitleChangedEvent.next(this.task);

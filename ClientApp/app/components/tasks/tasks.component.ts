@@ -14,7 +14,7 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
 export class TasksComponent implements ng.OnInit {
   public newTask = "";
   public tasks: Task[] = new Array<Task>();
-  public activeTask: Task = new Task();
+  public activeTask: Task;
   errorMessage: string;
 
   constructor(private taskService: TaskService, private http: Http) { }
