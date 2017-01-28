@@ -20,6 +20,9 @@
             <task-content *ngIf="activeTask != null"
                 [task]="activeTask" (taskChanged)="putTask($event)">
             </task-content>
+            <div *ngIf="activeTask == null" class="placeholder">
+                No task selected
+            </div>
         </div>
     </div>
 </div>

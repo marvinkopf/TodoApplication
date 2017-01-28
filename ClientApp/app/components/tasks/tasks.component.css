@@ -41,3 +41,12 @@ h3 {
 .right {
     min-height: 100vh;
 }
+
+.placeholder {
+    height: 100vh;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+    font-size: 36px;
+    color: #d3d3d3;
+}
