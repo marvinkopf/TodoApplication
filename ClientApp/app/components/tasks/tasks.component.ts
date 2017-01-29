@@ -48,7 +48,10 @@ export class TasksComponent implements ng.OnInit {
       task =>
         this.taskService.getAllTasks()
           .subscribe(
-          tasks => this.tasks = tasks,
+          tasks => {
+            this.tasks = tasks;
+            this.activeTask = task;
+          },
           error => this.errorMessage = <any>error),
       error => this.errorMessage = <any>error);
 
@@ -72,7 +75,10 @@ export class TasksComponent implements ng.OnInit {
       task =>
         this.taskService.getAllTasks()
           .subscribe(
-          tasks => this.tasks = tasks,
+          tasks => {
+            this.tasks = tasks;
+            this.activeTask = null;
+          },
           error => this.errorMessage = <any>error),
       error => this.errorMessage = <any>error);
   }
