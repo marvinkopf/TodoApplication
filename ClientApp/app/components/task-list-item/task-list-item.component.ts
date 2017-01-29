@@ -13,9 +13,6 @@ export class TaskListItemComponent {
   task: Task;
 
   @Output()
-  removeEvent = new EventEmitter();
-
-  @Output()
   completeEvent = new EventEmitter();
 
   @Output()
@@ -42,11 +39,7 @@ export class TaskListItemComponent {
 
     this.taskTitleChangedEvent.next(this.task);
   }
-
-  removeTask() {
-    this.removeEvent.next(this.task);
-  }
-
+  
   completeTask() {
     this.completeEvent.next(this.task);
   }

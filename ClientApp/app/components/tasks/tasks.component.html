@@ -6,19 +6,14 @@
             <input [(ngModel)]="newTask" (keyup.enter)="addTask($event)" type="text" class="form-control" placeholder="New Task" />
 
             <ul class="list-group">
-              <li *ngFor="let task of tasks" class="list-group-item borderless"
-                [class.selected]="activeTask?.title === task.title"
-                (click)="select(task)">
-                <task-list-item [task]="task" (completeEvent)="completeTask($event)"
-                  (removeEvent)="removeTask($event)"
-                  (taskTitleChangedEvent)="putTask($event)">
-                </task-list-item>
-              </li>
+                <li *ngFor="let task of tasks" class="list-group-item borderless" [class.selected]="activeTask?.title === task.title" (click)="select(task)">
+                    <task-list-item [task]="task" (completeEvent)="completeTask($event)" (taskTitleChangedEvent)="putTask($event)">
+                    </task-list-item>
+                </li>
             </ul>
         </div>
         <div class='col-sm-6 right'>
-            <task-content *ngIf="activeTask != null"
-                [task]="activeTask" (taskChanged)="putTask($event)">
+            <task-content *ngIf="activeTask != null" [task]="activeTask" (taskChanged)="putTask($event)" (removeEvent)="removeTask($event)">
             </task-content>
             <div *ngIf="activeTask == null" class="placeholder">
                 No task selected

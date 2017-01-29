@@ -13,7 +13,14 @@ export class TaskContentComponent {
   task: Task;
 
   @Output()
+  removeEvent = new EventEmitter();
+
+  @Output()
   taskChanged = new EventEmitter();
+
+  removeTask() {
+    this.removeEvent.next(this.task);
+  }
 
   textChanged() {
     this.taskChanged.next(this.task);
