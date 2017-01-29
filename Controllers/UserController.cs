@@ -29,5 +29,13 @@ namespace Todoapp.Controllers
                     where u.Id == User.FindFirst(ClaimTypes.NameIdentifier).Value
                     select u).ToArray()[0];
         }
+
+        [HttpGet("[action]")]
+        public IEnumerable<Project> Projects()
+        {
+            return (from u in _context.Users.Include(u => u.Projects)
+                    where u.Id == User.FindFirst(ClaimTypes.NameIdentifier).Value
+                    select u).ToArray()[0].Projects;
+        }
     }
 }

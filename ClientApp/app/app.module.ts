@@ -8,6 +8,7 @@ import { TaskListItemComponent } from './components/task-list-item/task-list-ite
 import { TaskContentComponent } from './components/task-content/task-content.component';
 import { FormsModule }   from '@angular/forms';
 import { MyDatePickerModule } from './../my-date-picker/my-date-picker.module';
+import { AddListComponent} from './components/add-list/add-list.component';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -16,7 +17,8 @@ import { MyDatePickerModule } from './../my-date-picker/my-date-picker.module';
         NavMenuComponent,
         TasksComponent,
         TaskListItemComponent,
-        TaskContentComponent
+        TaskContentComponent,
+        AddListComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.

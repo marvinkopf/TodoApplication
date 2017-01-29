@@ -23,7 +23,8 @@ namespace Todoapp.Data
             // Add your customizations after calling base.OnModelCreating(builder);
 
             builder.Entity<Project>()
-            .HasKey(c => new {c.ProjectId, c.UserId});
+                    .HasOne(p => p.ApplicationUser)
+                    .WithMany(a => a.Projects);
         }
 
         public DbSet<Models.TaskItem> Tasks { get; set; }

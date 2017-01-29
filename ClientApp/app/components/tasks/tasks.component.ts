@@ -8,7 +8,6 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
   selector: "tasks",
   templateUrl: "./tasks.component.html",
   styleUrls: ["./tasks.component.css"],
-  entryComponents: [TaskListItemComponent],
   providers: [TaskService]
 })
 export class TasksComponent implements ng.OnInit {

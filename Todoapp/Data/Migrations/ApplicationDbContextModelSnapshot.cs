@@ -173,13 +173,16 @@ namespace Todoapp.Data.Migrations
 
             modelBuilder.Entity("Todoapp.Models.Project", b =>
                 {
-                    b.Property<int>("ProjectId");
+                    b.Property<int>("ProjectId")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("Title");
 
-                    b.HasKey("ProjectId", "UserId");
+                    b.HasKey("ProjectId");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Projects");
                 });
@@ -247,6 +250,13 @@ namespace Todoapp.Data.Migrations
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Todoapp.Models.Project", b =>
+                {
+                    b.HasOne("Todoapp.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Projects")
+                        .HasForeignKey("ApplicationUserId");
                 });
         }
     }
