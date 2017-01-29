@@ -51,3 +51,7 @@ h3 {
     font-size: 36px;
     color: #d3d3d3;
 }
+
+li {
+    border-radius: 0 !important;
+}
