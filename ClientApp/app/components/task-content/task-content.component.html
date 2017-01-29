@@ -1,5 +1,6 @@
 <div class="header">
-    <a><span class='glyphicon glyphicon-calendar'></span></a>
+    <my-date-picker [options]="myDatePickerOptions" *ngIf="!task.isDeleted"
+               (dateChanged)="onDateChanged($event)"></my-date-picker>
 </div>
 <div class="content">
     <h3>{{ task.title }}</h3>
