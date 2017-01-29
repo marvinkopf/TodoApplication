@@ -1,7 +1,11 @@
-<h3>{{ task.title }}</h3>
+<div class="header">
+    <a><span class='glyphicon glyphicon-calendar'></span></a>
+</div>
+<div class="content">
+    <h3>{{ task.title }}</h3>
 
-<textarea name="text" [(ngModel)]="task.text" (blur)="textChanged()" placeholder="Add description"></textarea>
-
+    <textarea name="text" [(ngModel)]="task.text" (blur)="textChanged()" placeholder="Add description"></textarea>
+</div>
 <div class="footer">
     <ul class="nav navbar-nav">
         <li><a><span class='glyphicon glyphicon-inbox'></span></a></li>

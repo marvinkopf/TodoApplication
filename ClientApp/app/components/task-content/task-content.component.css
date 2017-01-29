@@ -13,7 +13,7 @@ h3 {
 
 textarea,
 textarea:focus {
-    height: calc(100% - 115px);
+    height: calc(100% - 60px);
     width: 100%;
     overflow: hidden;
     resize: none;
@@ -23,6 +23,23 @@ textarea:focus {
     outline-offset: 0;
     padding-left: 15px;
     padding-right: 15px;
+    background-color: #fafafa;
+}
+
+.content {
+    height: calc(100% - 102px);
+    background-color: #fafafa;
+}
+
+.header {
+    border-bottom: solid 1px #ddd;
+    height: 50px;
+}
+
+.header span {
+    padding: 15px;
+    font-size: large;
+    color: gray;
 }
 
 .footer {
@@ -36,8 +53,9 @@ textarea:focus {
 }
 
 .footer li {
-    margin-left: calc((100% / 3 - 51px) / 2);
-    margin-right: calc((100% / 3 - 51px) / 2);
+    margin-left: calc((100% / 3 - 46px) / 2);
+    margin-right: calc((100% / 3 - 46px) / 2);
+    font-size: medium;
 }
 
 .footer li a {
