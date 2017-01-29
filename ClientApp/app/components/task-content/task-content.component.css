@@ -2,18 +2,18 @@ h3 {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 15px;
 }
 
 :host {
     display: block;
     height: 100vh;
+
 }
 
 textarea,
 textarea:focus {
-    height: 90%;
+    height: calc(100% - 115px);
     width: 100%;
     overflow: hidden;
     resize: none;
@@ -21,4 +21,25 @@ textarea:focus {
     font-size: 18px;
     outline: none;
     outline-offset: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.footer {
+    height: 50px;
+    width: 100%;
+    border-top: solid 1px #ddd;
+}
+
+.footer ul {
+    width: 100%;
+}
+
+.footer li {
+    margin-left: calc((100% / 3 - 51px) / 2);
+    margin-right: calc((100% / 3 - 51px) / 2);
+}
+
+.footer li a {
+    color: gray;
 }
