@@ -1,0 +1,18 @@
+.modal-btn {
+    color: black !important;
+    background-color: #337ab7 !important;
+    padding: 6px 12px 6px 12px !important;
+}
+
+.modal-dialog {
+    width: 200px;
+}
+
+.modal-header .close {
+    padding-top: 8px;
+    float: right;
+}
+
+.modal-title {
+    float: left;
+}

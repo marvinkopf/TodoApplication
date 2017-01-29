@@ -8,8 +8,12 @@ input.form-control {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
 }
 
-li.selected, li:hover {
+li.selected {
     background-color: #f5f5f5;
+}
+
+li:hover {
+    background-color: #fafafa;
 }
 
 li.borderless {
