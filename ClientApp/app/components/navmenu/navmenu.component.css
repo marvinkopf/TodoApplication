@@ -58,17 +58,25 @@ li.link-active a:focus {
     }
 }
 
-.menu {
+.menu-img {
     width: 25px;
     height: 25px;
-    margin: 10px;
 }
 
 .btn {
     padding: 0 !important; 
     background-color: transparent !important;
     border: none !important;
+    color: white !important;
+    max-width: 90%;
+}
+
+.btn div {
+    margin: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: white !important;
+}
+
+.dropdown-menu {
+    min-width: 100px !important;
 }

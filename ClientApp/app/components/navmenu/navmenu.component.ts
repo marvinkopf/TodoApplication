@@ -19,7 +19,7 @@ export class NavMenuComponent implements OnInit {
     }
 
     logout() {
-        this.userService.logout().subscribe();
+        this.userService.logout().subscribe(() => window.location.replace('/'));
     }
 
     getUserInfo() {
