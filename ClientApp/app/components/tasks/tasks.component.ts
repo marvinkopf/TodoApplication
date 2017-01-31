@@ -57,7 +57,11 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
 
     let task = new Task();
     task.title = this.newTask;
-    task.projectId = "0";
+    
+    if(this.projectId === "All")
+      task.projectId = "0";
+    else
+      task.projectId = this.projectId;
 
     this.taskService.addTask(task)
       .subscribe(
