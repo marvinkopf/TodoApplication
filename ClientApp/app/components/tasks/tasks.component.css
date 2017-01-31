@@ -29,6 +29,14 @@ ul.list-group li.list-group-item {
 
 ul {
     margin-top: 10px;
+    margin-bottom: 0;
+    max-height: calc(100vh - 100px);
+    overflow-y: hidden;
+}
+
+
+ul:hover {
+    overflow-y: scroll;
 }
 
 h3 {
