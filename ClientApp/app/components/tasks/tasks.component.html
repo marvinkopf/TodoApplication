@@ -1,7 +1,7 @@
 <div class='container-fluid'>
     <div class='row'>
         <div class='col-sm-6 left'>
-            <h3> All </h3>
+            <h3> {{ title }} </h3>
 
             <input [(ngModel)]="newTask" (keyup.enter)="addTask($event)" type="text" class="form-control" placeholder="New Task" />
 

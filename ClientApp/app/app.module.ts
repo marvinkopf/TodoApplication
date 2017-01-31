@@ -25,9 +25,10 @@ import { AddListComponent} from './components/add-list/add-list.component';
         FormsModule,
         MyDatePickerModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'tasks', pathMatch: 'full' },
-            { path: 'tasks', component: TasksComponent},
-            { path: '**', redirectTo: 'tasks' }
+            { path: '', redirectTo: 'tasks/All', pathMatch: 'full' },
+            { path: 'tasks', redirectTo: 'tasks/All'},
+            { path: 'tasks/:project', component: TasksComponent},
+            { path: '**', redirectTo: 'tasks/All' }
         ])
     ]
 })

@@ -25,6 +25,10 @@ export class ProjectService {
         return this.http.get("api/user/projects").map(res => res.json()).catch(this.handleError);
     }
 
+    public getProject(id: number): Observable<Project> {
+        return this.http.get("api/project/" + id).map(res => res.json()).catch(this.handleError);
+    }
+
     private handleError (error: any) {
         let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : "Server error";

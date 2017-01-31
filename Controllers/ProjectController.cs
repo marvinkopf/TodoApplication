@@ -28,7 +28,7 @@ namespace Todoapp.Controllers
             var project = _context.Projects.FirstOrDefault(t => 
                                         t.ProjectId == id);
 
-            if(project == null || project.ApplicationUser.Id != User.FindFirst(ClaimTypes.NameIdentifier).Value)
+            if(project == null /*|| project.ApplicationUser.Id != User.FindFirst(ClaimTypes.NameIdentifier).Value */)
             {
                 project = new Project();
                 project.Title = "NOT EXISTENT OR NO AUTHORIZATION";
