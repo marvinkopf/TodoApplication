@@ -26,6 +26,7 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
+      this.activeTask = null;
       this.projectId = params['project'];
       if (this.projectId === 'All')
         this.title = 'All';
