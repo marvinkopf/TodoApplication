@@ -18,27 +18,28 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
   public activeTask: Task;
   errorMessage: string;
   private sub: any;
+  private projectId: string;
   public title: string;
 
   constructor(private projectService: ProjectService,
     private taskService: TaskService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getAllTasks();
-
     this.sub = this.route.params.subscribe(params => {
-      if (params['project'] === 'All')
+      this.projectId = params['project'];
+      if (this.projectId === 'All')
         this.title = 'All';
       else
-        this.projectService.getProject(params['project']).subscribe(
+        this.projectService.getProject(+this.projectId).subscribe(
           project => this.title = project.title,
           error => this.title = "error"
-        )
+        );
+      this.getTasks(this.projectId);
     }, error => 1+1);
   }
 
-  getAllTasks() {
-    this.taskService.getAllTasks()
+  getTasks(projectId: any) {
+    this.taskService.getTasks(projectId)
       .subscribe(
       tasks => this.tasks = tasks,
       error => this.errorMessage = <any>error);
@@ -60,7 +61,7 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
     this.taskService.addTask(task)
       .subscribe(
       task =>
-        this.taskService.getAllTasks()
+        this.taskService.getTasks(this.projectId)
           .subscribe(
           tasks => {
             this.tasks = tasks;
@@ -76,7 +77,7 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
     this.taskService.completeTask(task)
       .subscribe(
       task =>
-        this.taskService.getAllTasks()
+        this.taskService.getTasks(this.projectId)
           .subscribe(
           tasks => this.tasks = tasks,
           error => this.errorMessage = <any>error),
@@ -87,7 +88,7 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
     this.taskService.removeTask(task)
       .subscribe(
       task =>
-        this.taskService.getAllTasks()
+        this.taskService.getTasks(this.projectId)
           .subscribe(
           tasks => {
             this.tasks = tasks;
@@ -101,7 +102,7 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
     this.taskService.putTask(task)
       .subscribe(
       task =>
-        this.taskService.getAllTasks()
+        this.taskService.getTasks(this.projectId)
           .subscribe(
           tasks => this.tasks = tasks,
           error => this.errorMessage = <any>error),

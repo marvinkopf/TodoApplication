@@ -33,8 +33,8 @@ export class TaskService {
              .catch(this.handleError);
     }
 
-    public getAllTasks(): Observable<Task[]> {
-        return this.http.get("api/tasks/all")
+    public getTasks(projectId: any): Observable<Task[]> {
+        return this.http.get("api/tasks/" + projectId)
                     .map(res => res.json())
                     .catch(this.handleError);
     }
