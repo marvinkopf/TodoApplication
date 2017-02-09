@@ -198,6 +198,8 @@ namespace Todoapp.Data.Migrations
 
                     b.Property<DateTimeOffset>("DeletedTime");
 
+                    b.Property<DateTime>("FinishBy");
+
                     b.Property<bool>("IsCompleted");
 
                     b.Property<bool>("IsDeleted");

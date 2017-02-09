@@ -1,6 +1,6 @@
-<div class="header">
+<div class="header">{{ task.finishBy }}
     <my-date-picker [options]="myDatePickerOptions"
-               (dateChanged)="onDateChanged($event)"></my-date-picker>
+               (dateChanged)="onDateChanged($event)"></my-date-picker> 
 </div>
 <div class="content">
     <h3>{{ task.title }}</h3>

@@ -5,4 +5,5 @@ export class Task {
     projectId: string;
     title: string;
     text: string;
+    finishBy: string;
 }

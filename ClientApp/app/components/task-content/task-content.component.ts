@@ -50,7 +50,8 @@ export class TaskContentComponent {
   };
 
   onDateChanged(event): void {
-    this.task.title = event.formatted;
+    this.task.finishBy = event.formatted;
+    this.taskService.putTask(this.task).subscribe( value => 1, error => 1);
   }
 
   removeTask() {

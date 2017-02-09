@@ -27,7 +27,7 @@ namespace Todoapp.Controllers
         }
 
         public IEnumerable<Todoapp.Models.TaskItem> 
-            Default(string projectId, [FromQuery]int finishDate)
+            Default(string projectId)
         {
             var tasks = _tasks
                             .Where(t => t.IsDeleted == false && t.IsCompleted == false)
@@ -50,6 +50,17 @@ namespace Todoapp.Controllers
 
                 return tasks.Where(t => t.ProjectId == projectIdAsInt);
             }
+        }
+
+        [HttpGet("date/{date}")]
+        public IEnumerable<Todoapp.Models.TaskItem> 
+            FromDate(string projectId, DateTime date)
+        {
+            var tasks = _tasks
+                            .Where(t => t.IsDeleted == false && t.IsCompleted == false &&
+                                    t.FinishBy.Date == date.Date)
+                            .OrderByDescending(t => t.CreatedTime);
+            return TasksByProject(projectId, tasks);
         }
         
         [HttpGet("[action]")]
