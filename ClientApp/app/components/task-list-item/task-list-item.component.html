@@ -1,9 +1,7 @@
 <div class="checkbox" >
   <div (dblclick)="startEditTaskTitle(taskDom)" style="position:absolute; left:0; right:0; top:0; bottom:0;"></div>
-  <input *ngIf="!task.isDeleted" type="checkbox" 
+  <input type="checkbox" 
     [(ngModel)]="task.isCompleted" ng-checked="task.isCompleted" (click)=completeTask() />
-  <input *ngIf="task.isDeleted" type="checkbox"
-    [(ngModel)]="task.isCompleted" ng-checked="task.isCompleted" (click)=completeTask() disabled/>
   <input #taskDom type="text" [(ngModel)]="task.title" class="task-title-input"
       (keyup.enter)="taskTitleUpdated()"
       (blur)="taskTitleUpdated()"

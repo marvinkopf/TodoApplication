@@ -5,6 +5,8 @@ import { Task } from "./../../core/domain/task";
 import { TaskListItemComponent } from "./../task-list-item/task-list-item.component";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import { ActivatedRoute } from '@angular/router';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Project } from "./../../core/domain/project";
 
 @ng.Component({
   selector: "tasks",

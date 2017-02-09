@@ -53,11 +53,13 @@ textarea:focus {
 }
 
 .footer li {
-    margin-left: calc((100% / 3 - 46px) / 2);
-    margin-right: calc((100% / 3 - 46px) / 2);
+    margin-left: calc((100% / 3 - 76px) / 2);
+    margin-right: calc((100% / 3 - 76px) / 2);
     font-size: medium;
 }
 
-.footer li a {
+.footer a {
     color: gray;
+    display: block;
+    padding: 15px 30px 14px 30px;
 }

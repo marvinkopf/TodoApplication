@@ -1,6 +1,9 @@
 import * as ng from "@angular/core";
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Task } from "./../../core/domain/task";
+import { TaskService } from "./../../core/services/taskService";
+import { Project } from "./../../core/domain/project";
+import { ProjectService } from "./../../core/services/projectService";
 
 @ng.Component({
   selector: "task-content",
@@ -17,6 +20,22 @@ export class TaskContentComponent {
 
   @Output()
   taskChanged = new EventEmitter();
+
+  constructor(private projectService: ProjectService, private taskService: TaskService) { }
+
+  projects: Project[];
+
+  loadProjects(): void {
+    this.projectService.getProjects().subscribe(
+      projects => this.projects = projects,
+      error => 1
+    );
+  }
+
+  moveTaskToProject(projectId: string): void {
+    this.task.projectId = projectId;
+    this.taskService.putTask(this.task).subscribe( value => 1, error => 1);
+  }
 
   myDatePickerOptions = {
     todayBtnTxt: 'Today',
