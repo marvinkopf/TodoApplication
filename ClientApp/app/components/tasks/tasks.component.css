@@ -41,6 +41,9 @@ ul:hover {
 
 h3 {
     margin-left: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .left {

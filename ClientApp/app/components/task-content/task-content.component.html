@@ -1,6 +1,5 @@
 <div class="header">{{ task.finishBy }}
-    <my-date-picker [options]="myDatePickerOptions"
-               (dateChanged)="onDateChanged($event)"></my-date-picker> 
+    <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)"></my-date-picker>
 </div>
 <div class="content">
     <h3>{{ task.title }}</h3>
@@ -9,18 +8,20 @@
 </div>
 <div class="footer">
     <ul class="nav navbar-nav">
-        <li><div class="dropup">
-            <a (click)="loadProjects()" data-toggle="dropdown"><div></div><span class='glyphicon glyphicon-inbox'></span></a>
-            
-            <ul class="dropdown-menu">
-            
+        <li>
+            <div class="dropup">
+                <a class="footer-button" (click)="loadProjects()" data-toggle="dropdown">
+                    <div></div><span class='glyphicon glyphicon-inbox'></span></a>
+
+                <ul class="dropdown-menu">
+
                     <li *ngFor="let project of projects">
                         <a (click)="moveTaskToProject(project.projectId)">{{ project.title }}t</a></li>
                 </ul>
-                    
-                </div>
-            </li>
-        <li><a (click)="removeTask()"><span class='glyphicon glyphicon-trash'></span></a></li>
-        <li><a><span class='glyphicon glyphicon-cog'></span></a></li>
+
+            </div>
+        </li>
+        <li><a class="footer-button" (click)="removeTask()"><span class='glyphicon glyphicon-trash'></span></a></li>
+        <li><a class="footer-button"><span class='glyphicon glyphicon-cog'></span></a></li>
     </ul>
 </div>
