@@ -89,7 +89,7 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
     let task = new Task();
     task.title = this.newTask;
 
-    if (this.projectId === "All")
+    if (this.projectId.toLowerCase() === "all")
       task.projectId = "0";
     else
       task.projectId = this.projectId;
@@ -143,7 +143,7 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
           tasks => {
             this.tasks = tasks;
 
-            if (this.projectId != "All" && this.projectId != this.activeTask.projectId)
+            if (this.projectId.toLowerCase() != "all" && this.projectId != this.activeTask.projectId)
               this.activeTask = null;
           },
           error => this.errorMessage = <any>error),
