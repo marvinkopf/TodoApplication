@@ -9,6 +9,7 @@ import { TaskContentComponent } from './components/task-content/task-content.com
 import { FormsModule }   from '@angular/forms';
 import { MyDatePickerModule } from './../my-date-picker/my-date-picker.module';
 import { AddListComponent} from './components/add-list/add-list.component';
+import { CompletedTasksComponent } from './components/completed-tasks/completed-tasks.component';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -18,17 +19,19 @@ import { AddListComponent} from './components/add-list/add-list.component';
         TasksComponent,
         TaskListItemComponent,
         TaskContentComponent,
-        AddListComponent
+        AddListComponent,
+        CompletedTasksComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         FormsModule,
         MyDatePickerModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'tasks/All', pathMatch: 'full' },
-            { path: 'tasks', redirectTo: 'tasks/All'},
+            { path: '', redirectTo: 'tasks/all', pathMatch: 'full' },
+            { path: 'tasks', redirectTo: 'tasks/all'},
             { path: 'tasks/:project', component: TasksComponent},
-            { path: '**', redirectTo: 'tasks/All' }
+            { path: 'completedTasks', component: CompletedTasksComponent },
+            { path: '**', redirectTo: 'tasks/all' },
         ])
     ]
 })

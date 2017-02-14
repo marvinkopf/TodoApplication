@@ -15,7 +15,7 @@
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/tasks/All']">
+                    <a [routerLink]="['/tasks/all']">
                         <span class='glyphicon glyphicon-home'></span>All
                     </a>
                 </li>
@@ -39,6 +39,11 @@
                 <li class="sub-footer">
                     <a data-toggle="modal" data-target="#exampleModal">
                         <span class='glyphicon glyphicon-plus'></span>Add List
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/completedTasks']">
+                        <span class='glyphicon glyphicon-check'></span>Completed
                     </a>
                 </li>
             </ul>

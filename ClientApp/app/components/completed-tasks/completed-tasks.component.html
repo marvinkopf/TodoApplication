@@ -1,10 +1,7 @@
 <div class='container-fluid'>
     <div class='row'>
         <div class='col-sm-6 left'>
-            <h3> {{ title }} </h3>
-
-            <input [(ngModel)]="newTask" (keyup.enter)="addTask($event)" type="text" class="form-control" placeholder="New Task" />
-
+            <h3> Completed </h3>
             <ul class="list-group">
                 <li *ngFor="let task of tasks" class="list-group-item borderless" [class.selected]="activeTask?.taskItemId == task.taskItemId"
                     (click)="select(task)">
