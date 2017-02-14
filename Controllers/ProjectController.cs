@@ -13,13 +13,34 @@ namespace Todoapp.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
+    [Route("api/tasks")]
     public class ProjectController : Controller
     {
         private Data.ApplicationDbContext _context;
-
+        IQueryable<TaskItem> _tasks;
+           
         public ProjectController(Data.ApplicationDbContext context)
         {
             _context = context;
+            _tasks = from t in _context.Tasks
+                        where t.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value
+                        select t;
+        }
+
+        [HttpGet("{id:int}/tasks")]
+        [HttpGet("")]
+        public IEnumerable<TaskItem> GetTasks(int? id = null, DateTime? date = null, bool deleted = false, bool completed = false)
+        {
+            var tasks = _tasks
+                            .Where(t => t.IsDeleted == deleted && t.IsCompleted == completed);
+
+            if(id != null)
+                tasks = tasks.Where(t => t.ProjectId == id);
+
+            if(date != null)
+                tasks = tasks.Where(t => t.FinishBy.Date == date.Value.Date);
+
+            return tasks;
         }
 
         [HttpGet("{id:int}")]
@@ -38,7 +59,7 @@ namespace Todoapp.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public Project PutTProject(int id, [FromBody]Todoapp.Models.Project project)
+        public Project PutProject(int id, [FromBody]Todoapp.Models.Project project)
         {
              _context.Entry(project).State = EntityState.Modified;
             _context.SaveChanges();

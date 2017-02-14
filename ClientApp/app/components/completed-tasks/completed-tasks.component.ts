@@ -41,10 +41,6 @@ export class CompletedTasksComponent implements ng.OnInit {
   }
 
   completeTask(task): void {
-    this.taskService.completeTask(task)
-      .subscribe(
-      task =>
-        this.getTasks(this.projectId));
   }
 
   removeTask(task: Task): void {

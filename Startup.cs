@@ -77,6 +77,12 @@ namespace Todoapp
 
             app.UseMvc(routes =>
             {
+                // Why doesn't this work??
+                routes.MapRoute(
+                    name: "tasks",
+                    template: "api/tasks",
+                    defaults: new { controller = "Project", action = "GetTasks" });
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

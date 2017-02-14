@@ -3,12 +3,12 @@
         <div class='col-sm-6 left'>
             <h3> {{ title }} </h3>
 
-            <input [(ngModel)]="newTask" (keyup.enter)="addTask($event)" type="text" class="form-control" placeholder="New Task" />
+            <input [(ngModel)]="newTaskTitle" (keyup.enter)="addTask($event)" type="text" class="form-control" placeholder="New Task" />
 
             <ul class="list-group">
                 <li *ngFor="let task of tasks" class="list-group-item borderless" [class.selected]="activeTask?.taskItemId == task.taskItemId"
                     (click)="select(task)">
-                    <task-list-item [task]="task" (completeEvent)="completeTask($event)" (taskTitleChangedEvent)="putTask($event)">
+                    <task-list-item [task]="task" (taskChangedEvent)="putTask($event)">
                     </task-list-item>
                 </li>
             </ul>

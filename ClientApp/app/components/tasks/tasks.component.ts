@@ -15,13 +15,19 @@ import { Project } from "./../../core/domain/project";
   providers: [TaskService, ProjectService]
 })
 export class TasksComponent implements ng.OnInit, ng.OnDestroy {
-  public newTask = "";
-  public tasks: Task[] = new Array<Task>();
-  public activeTask: Task;
-  errorMessage: string;
-  private sub: any;
-  private projectId: string;
-  public title: string;
+  newTaskTitle: string = "";
+  tasks: Task[] = new Array<Task>();
+  activeTask: Task;
+  title: string;
+
+  // Null for 'all' tasks
+  projectId: string;
+
+  // How tasks are retrieved, different implementations for different "subtypes" of this component
+  getTasksPointer: (projectId: any) => void;
+
+  // Cache the params observable to unsubscribe on destroy
+  sub: any;
 
   constructor(private projectService: ProjectService,
     private taskService: TaskService, private route: ActivatedRoute) { }
@@ -30,51 +36,54 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.activeTask = null;
       this.projectId = params['project'];
+
+      // Determine if this is a specific list, or just plain project
       if (this.projectId.toLowerCase() === 'all') {
         this.title = 'All';
-        this.getTasks(this.projectId);
+        this.projectId = null;
+        this.getTasksPointer = (projectId) => this.taskService.getTasks(projectId)
+          .subscribe(tasks => this.tasks = tasks, error => console.log(error));
       }
       else if (this.projectId.toLowerCase() === 'today') {
         this.title = 'Today';
-        this.projectId = 'all';
+        this.projectId = null;
 
-        this.taskService.getTasks(this.projectId, new Date().toISOString())
-          .subscribe(
-          tasks => this.tasks = tasks,
-          error => this.errorMessage = <any>error);
+        this.getTasksPointer = (projectId) => this.taskService.getTasks(this.projectId, new Date().toISOString())
+          .subscribe(tasks => this.tasks = tasks, error => console.log(error));
       }
       else if (this.projectId.toLowerCase() === 'week') {
         this.title = 'Week';
-        this.projectId = 'all';
+        this.projectId = null;
 
-        for (let i = 0; i < 7; i++) {
-          let today = new Date();
-          today.setDate(today.getDate() + i);
+        this.getTasksPointer = (projectId) => {
+          for (let i = 0; i < 7; i++) {
+            let today = new Date();
+            today.setDate(today.getDate() + i);
 
-          this.tasks = [];
+            this.tasks = [];
 
-          this.taskService.getTasks(this.projectId, today.toISOString())
-            .subscribe(
-            tasks => this.tasks = this.tasks.concat(tasks),
-            error => this.errorMessage = <any>error);
+            this.taskService.getTasks(this.projectId, today.toISOString())
+              .subscribe(tasks => this.tasks = this.tasks.concat(tasks), error => console.log(error));
+          }
         }
       }
-      else {
+      else { // Plain project
         this.projectService.getProject(+this.projectId).subscribe(
           project => this.title = project.title,
-          error => this.title = "error"
+          error => console.log(error)
         );
 
-        this.getTasks(this.projectId);
+        this.getTasksPointer = (projectId) => this.taskService.getTasks(projectId)
+          .subscribe(tasks => this.tasks = tasks, error => console.log(error));
       }
-    }, error => 1 + 1);
+
+      this.getTasks(this.projectId);
+    },
+      error => console.log(error));
   }
 
   getTasks(projectId: any) {
-    this.taskService.getTasks(projectId)
-      .subscribe(
-      tasks => this.tasks = tasks,
-      error => this.errorMessage = <any>error);
+    this.getTasksPointer(this.projectId);
   }
 
   select(task: Task) {
@@ -84,40 +93,25 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
   addTask(event): void {
     event.preventDefault();
 
-    if (!this.newTask) { return; }
+    if (!this.newTaskTitle) { return; }
 
     let task = new Task();
-    task.title = this.newTask;
+    task.title = this.newTaskTitle;
 
-    if (this.projectId.toLowerCase() === "all")
+    if (this.projectId == null)
       task.projectId = "0";
     else
       task.projectId = this.projectId;
 
     this.taskService.addTask(task)
       .subscribe(
-      task =>
-        this.taskService.getTasks(this.projectId)
-          .subscribe(
-          tasks => {
-            this.tasks = tasks;
-            this.activeTask = task;
-          },
-          error => this.errorMessage = <any>error),
-      error => this.errorMessage = <any>error);
+      task => {
+        this.getTasks(this.projectId);
+        this.activeTask = task;
+      },
+      error => console.log(error));
 
-    this.newTask = "";
-  }
-
-  completeTask(task): void {
-    this.taskService.completeTask(task)
-      .subscribe(
-      task =>
-        this.taskService.getTasks(this.projectId)
-          .subscribe(
-          tasks => this.tasks = tasks,
-          error => this.errorMessage = <any>error),
-      error => this.errorMessage = <any>error);
+    this.newTaskTitle = "";
   }
 
   removeTask(task: Task): void {
@@ -130,8 +124,8 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
             this.tasks = tasks;
             this.activeTask = null;
           },
-          error => this.errorMessage = <any>error),
-      error => this.errorMessage = <any>error);
+          error => console.log(error)),
+      error => console.log(error));
   }
 
   putTask(task: Task): void {
@@ -143,11 +137,11 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
           tasks => {
             this.tasks = tasks;
 
-            if (this.projectId.toLowerCase() != "all" && this.projectId != this.activeTask.projectId)
+            if ((this.projectId != null && this.projectId != this.activeTask.projectId))
               this.activeTask = null;
           },
-          error => this.errorMessage = <any>error),
-      error => this.errorMessage = <any>error);
+          error => console.log(error)),
+      error => console.log(error));
   }
 
   ngOnDestroy() {

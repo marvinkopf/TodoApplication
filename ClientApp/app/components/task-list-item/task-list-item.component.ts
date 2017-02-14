@@ -16,7 +16,7 @@ export class TaskListItemComponent {
   completeEvent = new EventEmitter();
 
   @Output()
-  taskTitleChangedEvent = new EventEmitter();
+  taskChangedEvent = new EventEmitter();
 
   cachedTaskTitle: string;
   editable = false;
@@ -37,10 +37,11 @@ export class TaskListItemComponent {
     if (this.task.title === this.cachedTaskTitle)
       return;
 
-    this.taskTitleChangedEvent.next(this.task);
+    this.taskChangedEvent.next(this.task);
   }
   
   completeTask() {
-    this.completeEvent.next(this.task);
+    this.task.isCompleted = !this.task.isCompleted;
+    this.taskChangedEvent.next(this.task);
   }
 }
