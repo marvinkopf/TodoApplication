@@ -33,8 +33,20 @@ export class TaskService {
              .catch(this.handleError);
     }
 
-    public getTasks(projectId: any): Observable<Task[]> {
-        return this.http.get("api/tasks/" + projectId)
+    public getTasks(): Observable<Task[]>;
+    public getTasks(projectId: string): Observable<Task[]>;
+    public getTasks(projectId: string, date: string): Observable<Task[]>;
+
+    public getTasks(projectId?: string, date?: string): Observable<Task[]> {
+        if(projectId == undefined)
+            projectId = "all";
+        
+        if(date != undefined)
+            date ="/date/" + date;
+        else
+            date = "";
+
+        return this.http.get("api/tasks/" + projectId + date)
                     .map(res => res.json())
                     .catch(this.handleError);
     }
