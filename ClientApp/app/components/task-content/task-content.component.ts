@@ -34,7 +34,8 @@ export class TaskContentComponent {
 
   moveTaskToProject(projectId: string): void {
     this.task.projectId = projectId;
-    this.taskService.putTask(this.task).subscribe( value => 1, error => 1);
+    this.taskChanged.next(this.task);
+    //this.taskService.putTask(this.task).subscribe( value => 1, error => 1);
   }
 
   myDatePickerOptions = {

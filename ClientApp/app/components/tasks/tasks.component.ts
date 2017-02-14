@@ -111,7 +111,12 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
       task =>
         this.taskService.getTasks(this.projectId)
           .subscribe(
-          tasks => this.tasks = tasks,
+          tasks => {
+            this.tasks = tasks;
+            
+            if(this.projectId != "All" && this.projectId != this.activeTask.projectId)
+              this.activeTask = null;
+          },
           error => this.errorMessage = <any>error),
       error => this.errorMessage = <any>error);
   }
