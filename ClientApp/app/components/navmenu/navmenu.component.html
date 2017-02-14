@@ -19,6 +19,16 @@
                         <span class='glyphicon glyphicon-home'></span>All
                     </a>
                 </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/tasks/today']">
+                        <span class='glyphicon glyphicon-calendar'></span>Today
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/tasks/week']">
+                        <span class='glyphicon glyphicon-calendar'></span>Week
+                    </a>
+                </li>
                 <li>
                     <div class="sub-header">List</div>
                 </li>

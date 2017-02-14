@@ -30,15 +30,44 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.activeTask = null;
       this.projectId = params['project'];
-      if (this.projectId === 'All')
+      if (this.projectId.toLowerCase() === 'all') {
         this.title = 'All';
-      else
+        this.getTasks(this.projectId);
+      }
+      else if (this.projectId.toLowerCase() === 'today') {
+        this.title = 'Today';
+        this.projectId = 'all';
+
+        this.taskService.getTasks(this.projectId, new Date().toISOString())
+          .subscribe(
+          tasks => this.tasks = tasks,
+          error => this.errorMessage = <any>error);
+      }
+      else if (this.projectId.toLowerCase() === 'week') {
+        this.title = 'Week';
+        this.projectId = 'all';
+
+        for (let i = 0; i < 7; i++) {
+          let today = new Date();
+          today.setDate(today.getDate() + i);
+
+          this.tasks = [];
+
+          this.taskService.getTasks(this.projectId, today.toISOString())
+            .subscribe(
+            tasks => this.tasks = this.tasks.concat(tasks),
+            error => this.errorMessage = <any>error);
+        }
+      }
+      else {
         this.projectService.getProject(+this.projectId).subscribe(
           project => this.title = project.title,
           error => this.title = "error"
         );
-      this.getTasks(this.projectId);
-    }, error => 1+1);
+
+        this.getTasks(this.projectId);
+      }
+    }, error => 1 + 1);
   }
 
   getTasks(projectId: any) {
@@ -59,8 +88,8 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
 
     let task = new Task();
     task.title = this.newTask;
-    
-    if(this.projectId === "All")
+
+    if (this.projectId === "All")
       task.projectId = "0";
     else
       task.projectId = this.projectId;
@@ -113,8 +142,8 @@ export class TasksComponent implements ng.OnInit, ng.OnDestroy {
           .subscribe(
           tasks => {
             this.tasks = tasks;
-            
-            if(this.projectId != "All" && this.projectId != this.activeTask.projectId)
+
+            if (this.projectId != "All" && this.projectId != this.activeTask.projectId)
               this.activeTask = null;
           },
           error => this.errorMessage = <any>error),
