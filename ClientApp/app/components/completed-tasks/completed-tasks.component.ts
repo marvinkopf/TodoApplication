@@ -30,7 +30,7 @@ export class CompletedTasksComponent implements ng.OnInit {
   }
 
   getTasks(projectId: any) {
-    this.taskService.getCompletedTasks()
+    this.taskService.getTasks(null, null, true)
       .subscribe(
       tasks => this.tasks = tasks,
       error => this.errorMessage = <any>error);
@@ -38,9 +38,6 @@ export class CompletedTasksComponent implements ng.OnInit {
 
   select(task: Task) {
     this.activeTask = task;
-  }
-
-  completeTask(task): void {
   }
 
   removeTask(task: Task): void {

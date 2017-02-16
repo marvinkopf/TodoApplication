@@ -25,8 +25,10 @@ export class TaskService {
     public getTasks(): Observable<Task[]>;
     public getTasks(projectId: string): Observable<Task[]>;
     public getTasks(projectId: string, date: string): Observable<Task[]>;
+    public getTasks(projectId: string, date: string, completed: boolean): Observable<Task[]>;
+    public getTasks(projectId: string, date: string, completed: boolean, deleted: boolean): Observable<Task[]>;
 
-    public getTasks(projectId?: string, date?: string): Observable<Task[]> {
+    public getTasks(projectId?: string, date?: string, completed?: boolean, deleted?: boolean): Observable<Task[]> {
         let path: string = "api";
 
         if (projectId != undefined)
@@ -34,26 +36,28 @@ export class TaskService {
 
         path += "/tasks";
 
+        if (date != undefined || completed != undefined || deleted != undefined)
+            path += "?";
+
         if (date != undefined)
-            path += "?date=" + date;
+            path += "date=" + date;
+
+        if (completed != undefined) {
+            if (!path.endsWith("?"))
+                path += "&";
+            path += "completed=" + completed;
+        }
+
+        if (deleted != undefined) {
+            if (!path.endsWith("?"))
+                path += "&";
+            path += "deleted=" + deleted;
+        }
 
         return this.http.get(path)
             .map(res => res.json())
             .catch(this.handleError);
     }
-
-    public getDeletedTasks(): Observable<Task[]> {
-        return this.http.get("api/tasks/all/deleted")
-            .map(res => res.json())
-            .catch(this.handleError);
-    }
-
-    public getCompletedTasks(): Observable<Task[]> {
-        return this.http.get("api/tasks/all/completed")
-            .map(res => res.json())
-            .catch(this.handleError);
-    }
-
 
     public removeTask(task: Task) {
         task.isDeleted = true;
