@@ -29,6 +29,11 @@ export class ProjectService {
         return this.http.get("api/project/" + id).map(res => res.json()).catch(this.handleError);
     }
 
+    public removeProject(project: Project) {
+        return this.http.delete("api/project/" + project.projectId)
+            .catch(this.handleError);
+    }
+
     private handleError (error: any) {
         let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : "Server error";

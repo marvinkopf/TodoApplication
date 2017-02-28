@@ -76,5 +76,24 @@ namespace Todoapp.Controllers
             _context.SaveChanges();
             return project;
         }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteProject(int id)
+        {
+            var proj = _context.Projects.Include(p => p.ApplicationUser).FirstOrDefault(p => 
+                                        p.ProjectId == id);
+
+            if(proj == null || proj.ApplicationUser != (from u in _context.Users.Include(u => u.Projects)
+                    where u.Id == User.FindFirst(ClaimTypes.NameIdentifier).Value
+                    select u).ToArray()[0])
+            {
+                return Unauthorized();
+            }
+
+            _context.Projects.Remove(proj);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

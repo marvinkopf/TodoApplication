@@ -6,13 +6,16 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskListItemComponent } from './components/task-list-item/task-list-item.component';
 import { TaskContentComponent } from './components/task-content/task-content.component';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MyDatePickerModule } from './../my-date-picker/my-date-picker.module';
-import { AddListComponent} from './components/add-list/add-list.component';
+import { AddListComponent } from './components/add-list/add-list.component';
 import { CompletedTasksComponent } from './components/completed-tasks/completed-tasks.component';
+import { ContextMenuService } from './core/services/contextMenuService';
+import { ContextMenuHolderComponent } from './components/contextMenuHolder/contextMenuHolder.component';
+import { ContextMenuDirective } from './directives/contextMenu.directive';
 
 @NgModule({
-    bootstrap: [ AppComponent ],
+    bootstrap: [AppComponent],
     declarations: [
         AppComponent,
         NavMenuComponent,
@@ -20,7 +23,9 @@ import { CompletedTasksComponent } from './components/completed-tasks/completed-
         TaskListItemComponent,
         TaskContentComponent,
         AddListComponent,
-        CompletedTasksComponent
+        CompletedTasksComponent,
+        ContextMenuDirective,
+        ContextMenuHolderComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
@@ -28,8 +33,8 @@ import { CompletedTasksComponent } from './components/completed-tasks/completed-
         MyDatePickerModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'tasks/all', pathMatch: 'full' },
-            { path: 'tasks', redirectTo: 'tasks/all'},
-            { path: 'tasks/:project', component: TasksComponent},
+            { path: 'tasks', redirectTo: 'tasks/all' },
+            { path: 'tasks/:project', component: TasksComponent },
             { path: 'completedTasks', component: CompletedTasksComponent },
             { path: '**', redirectTo: 'tasks/all' },
         ])
