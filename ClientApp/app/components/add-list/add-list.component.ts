@@ -1,8 +1,8 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { ProjectService } from "./../../core/services/projectService";
 import { Project } from "./../../core/domain/project";
 
-declare var jQuery:any;
+declare var jQuery: any;
 
 @Component({
     selector: 'add-list',
@@ -26,10 +26,10 @@ export class AddListComponent {
         project.title = this.newProject;
 
         this.projectService.addProject(project)
-            .subscribe();
-
-        this.newProject = "";
-        this.closeEvent.next();
+            .subscribe(val => {
+                this.newProject = "";
+                this.closeEvent.next();
+            });
     }
 
     close() {
