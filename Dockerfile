@@ -9,6 +9,7 @@ COPY . /app
 WORKDIR /app
 
 RUN ["dotnet", "restore"]
+RUN ["dotnet", "publish"]
 RUN ["dotnet", "build"]
 RUN ["dotnet", "ef", "database", "update"]
 
